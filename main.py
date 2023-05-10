@@ -13,8 +13,13 @@ class GameBoard:
     width: int
 
     def is_goal(self, x: int, y: int) -> bool:
+        if x == self.width - 1 and y == self.width - 1:
+            return True
+        else:
+            return False
+        
+    
         """Returns True if and only if the coordinates (x, y) represent the bottom right corner of the grid."""
-        raise NotImplementedError
 
 
 def victory_message():
