@@ -1,4 +1,4 @@
-from main import GameBoard
+from main import Direction, GameBoard, Turtle
 
 
 def test_game_board_can_be_created():
@@ -21,3 +21,30 @@ def test_is_goal_returns_false_with_one_indexing():
     # to be indexed from 1 instead of 0. Make sure GameBoard doesn't do this.
     board = GameBoard(length=10, width=10)
     assert not board.is_goal(x=10, y=10)
+
+
+def test_turtle_moving_basic_case():
+    board = GameBoard(10, 10, Turtle(1, Direction.EAST))
+    board.move_turtle()
+    assert board.turtle_location == (1, 0)
+
+def test_turtle_moving_basic_case_north_south():
+    board = GameBoard(10, 10, Turtle(1, Direction.SOUTH))
+    board.move_turtle()
+    assert board.turtle_location == (0, 1)
+
+def test_turtle_moving_higher_speed():
+    board = GameBoard(10, 10, Turtle(3, Direction.EAST))
+    board.move_turtle()
+    assert board.turtle_location == (2, 0)
+
+
+def test_turtle_does_not_go_off_board_east_west():
+    board = GameBoard(10, 10, Turtle(3, Direction.EAST), (8, 0))
+    board.move_turtle()
+    assert board.turtle_location == (9, 0)
+
+def test_turtle_does_not_go_off_board_north_south():
+    board = GameBoard(10, 10, Turtle(4, Direction.NORTH), (5, 2))
+    board.move_turtle()
+    assert board.turtle_location == (5, 0)

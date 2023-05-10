@@ -1,4 +1,18 @@
 from dataclasses import dataclass
+from enum import Enum
+from typing import Tuple
+
+class Direction(Enum):
+    NORTH = 0
+    EAST = 1
+    SOUTH = 2
+    WEST = 3
+
+
+@dataclass
+class Turtle:
+    speed: int
+    orientation: Direction
 
 
 @dataclass
@@ -11,6 +25,8 @@ class GameBoard:
 
     length: int
     width: int
+    turtle: Turtle = Turtle(1, Direction.EAST)
+    turtle_location: Tuple[int, int] = (0, 0)
 
     def is_goal(self, x: int, y: int) -> bool:
         if x == self.width - 1 and y == self.width - 1:
@@ -19,8 +35,7 @@ class GameBoard:
             return False
         
     
-        """Returns True if and only if the coordinates (x, y) represent the bottom right corner of the grid."""
+    def move_turtle(self):
+        """Updates the turtle's location"""
+        raise NotImplementedError
 
-
-def victory_message():
-    return "You made it to the goal!"
