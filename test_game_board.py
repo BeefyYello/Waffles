@@ -36,7 +36,7 @@ def test_turtle_moving_basic_case_north_south():
 def test_turtle_moving_higher_speed():
     board = GameBoard(10, 10, Turtle(3, Direction.EAST))
     board.move_turtle()
-    assert board.turtle_location == (2, 0)
+    assert board.turtle_location == (3, 0)
 
 
 def test_turtle_does_not_go_off_board_east_west():

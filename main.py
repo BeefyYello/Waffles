@@ -37,5 +37,24 @@ class GameBoard:
     
     def move_turtle(self):
         """Updates the turtle's location"""
-        raise NotImplementedError
+        (x,y) = self.turtle_location
+        if self.turtle.orientation == Direction.EAST:
+            newx = min(x+self.turtle.speed,self.width-1)
+            (x,y)= (newx,y)
+                
+        if self.turtle.orientation == Direction.NORTH:
+            newy = max(y-self.turtle.speed,0)
+            (x,y)= (x,newy)
+            
+        if self.turtle.orientation == Direction.WEST:
+            newx = max(x-self.turtle.speed,0)
+            (x,y)= (newx,y)
+        
+        if self.turtle.orientation == Direction.SOUTH:
+            newy = min(y+self.turtle.speed,self.length-1)
+            (x,y)= (x,newy)
+        self.turtle_location = (x,y)
+        print(x,y)
+        
+            
 
