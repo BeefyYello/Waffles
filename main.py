@@ -33,6 +33,11 @@ class GameBoard:
             return True
         else:
             return False
+
+    
+    def print_board(self):
+        """Prints the board with the turtle's location marked with a T and the goal location marked with a G."""
+        raise NotImplementedError
         
     
     def move_turtle(self):

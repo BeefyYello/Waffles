@@ -48,3 +48,15 @@ def test_turtle_does_not_go_off_board_north_south():
     board = GameBoard(10, 10, Turtle(4, Direction.NORTH), (5, 2))
     board.move_turtle()
     assert board.turtle_location == (5, 0)
+
+def test_game_board_printing_3_by_3_basic_case():
+    board = GameBoard(3, 3, Turtle(1, Direction.EAST), (0, 0))
+    assert board.print_board() == "T..\n...\n..G"
+
+def test_game_board_printing_3_by_3_after_move():
+    board = GameBoard(3, 3, Turtle(2, Direction.EAST), (0, 1))
+    assert board.print_board() == "...\nT..\n..G"
+
+def test_game_board_printing_5_by_3_after_move():
+    board = GameBoard(5, 3, Turtle(2, Direction.EAST), (0, 1))
+    assert board.print_board() == "...\nT..\n...\n...\n..G"
