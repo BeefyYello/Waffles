@@ -29,15 +29,28 @@ class GameBoard:
     turtle_location: Tuple[int, int] = (0, 0)
 
     def is_goal(self, x: int, y: int) -> bool:
-        if x == self.width - 1 and y == self.width - 1:
+        if x == self.width - 1 and y == self.length - 1:
             return True
         else:
             return False
 
     
     def print_board(self):
+        board = ""  
+        for y in range(self.length):
+            for x in range (self.width):
+                if self.turtle_location == (x,y):
+                    board = board + "T"
+                else:
+                    if self.is_goal(x,y) == False:
+                        board = board + "."
+                    else:
+                        board = board + "G"
+            if y < self.length-1:
+                board = board + "\n"
+        return(board)
+                
         """Prints the board with the turtle's location marked with a T and the goal location marked with a G."""
-        raise NotImplementedError
         
     
     def move_turtle(self):
