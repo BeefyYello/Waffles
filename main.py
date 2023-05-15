@@ -76,11 +76,32 @@ class GameBoard:
         print(x,y)
         
             
-    def change_orientation(self, rotate_right=True): # False means rotate left
+    def change_orientation(self, rotate_right=True):
+        # False means rotate left
         # For example: if the turtle's previous orientation was NORTH and rotate_right is True, the new orientation should be EAST
-        raise NotImplementedError
+        if self.turtle.orientation == Direction.NORTH:
+            if rotate_right == True:
+                self.turtle.orientation = Direction.EAST
+            else:
+                self.turtle.orientation = Direction.WEST
+        if self.turtle.orientation == Direction.EAST:
+            if rotate_right == True:
+                self.turtle.orientation = Direction.SOUTH
+            else:
+                self.turtle.orientation = Direction.NORTH
+        if self.turtle.orientation == Direction.SOUTH:
+            if rotate_right == True:
+                self.turtle.orientation = Direction.WEST
+            else:
+                self.turtle.orientation = Direction.EAST
+        if self.turtle.orientation == Direction.WEST:
+            if rotate_right == True:
+                self.turtle.orientation = Direction.NORTH
+            else:
+                self.turtle.orientation = Direction.SOUTH
+
 
 
     def turtle_is_at_goal(self):
-        raise NotImplementedError
-
+        (x,y) = self.turtle.location
+        return(self.goal(x,y))
