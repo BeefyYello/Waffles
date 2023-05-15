@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from os import system
 from typing import Tuple
 
 class Direction(Enum):
@@ -75,4 +76,11 @@ class GameBoard:
         print(x,y)
         
             
+    def change_orientation(self, rotate_right=True): # False means rotate left
+        # For example: if the turtle's previous orientation was NORTH and rotate_right is True, the new orientation should be EAST
+        raise NotImplementedError
+
+
+    def turtle_is_at_goal(self):
+        raise NotImplementedError
 
