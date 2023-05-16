@@ -84,17 +84,20 @@ class GameBoard:
                 self.turtle.orientation = Direction.EAST
             else:
                 self.turtle.orientation = Direction.WEST
-        if self.turtle.orientation == Direction.EAST:
+                
+        elif self.turtle.orientation == Direction.EAST:
             if rotate_right == True:
                 self.turtle.orientation = Direction.SOUTH
             else:
                 self.turtle.orientation = Direction.NORTH
-        if self.turtle.orientation == Direction.SOUTH:
+                
+        elif self.turtle.orientation == Direction.SOUTH:
             if rotate_right == True:
                 self.turtle.orientation = Direction.WEST
             else:
                 self.turtle.orientation = Direction.EAST
-        if self.turtle.orientation == Direction.WEST:
+                
+        elif self.turtle.orientation == Direction.WEST:
             if rotate_right == True:
                 self.turtle.orientation = Direction.NORTH
             else:
@@ -103,5 +106,5 @@ class GameBoard:
 
 
     def turtle_is_at_goal(self):
-        (x,y) = self.turtle.location
-        return(self.goal(x,y))
+        (x,y) = self.turtle_location
+        return self.is_goal(x,y)

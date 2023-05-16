@@ -60,3 +60,24 @@ def test_game_board_printing_3_by_3_after_move():
 def test_game_board_printing_5_by_3_after_move():
     board = GameBoard(5, 3, Turtle(2, Direction.EAST), (0, 1))
     assert board.print_board() == "...\nT..\n...\n...\n..G"
+
+def test_turtle_is_at_goal_false():
+    board = GameBoard(10, 10, Turtle(1,Direction.EAST),(0,0))
+    assert board.turtle_is_at_goal() == False
+    
+def test_turtle_is_at_goal_true():
+    board = GameBoard(1,1, Turtle(1, Direction.EAST),(0,0))
+    assert board.turtle_is_at_goal() == True
+    
+def test_north_turn_right():
+    board = GameBoard(3, 3, Turtle(2, Direction.EAST), (0,0))
+    board.move_turtle()
+    board.change_orientation()
+    board.move_turtle()
+    assert board.turtle_is_at_goal() == True
+def test_north_turn_left():
+    board = GameBoard(3,3, Turtle(2, Direction.SOUTH), (0,0))
+    board.move_turtle()
+    board.change_orientation(False)
+    board.move_turtle()
+    assert board.turtle_is_at_goal() == True
