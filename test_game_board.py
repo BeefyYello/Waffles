@@ -69,15 +69,27 @@ def test_turtle_is_at_goal_true():
     board = GameBoard(1,1, Turtle(1, Direction.EAST),(0,0))
     assert board.turtle_is_at_goal() == True
     
+
 def test_north_turn_right():
     board = GameBoard(3, 3, Turtle(2, Direction.EAST), (0,0))
     board.move_turtle()
     board.change_orientation()
     board.move_turtle()
     assert board.turtle_is_at_goal() == True
+
 def test_north_turn_left():
     board = GameBoard(3,3, Turtle(2, Direction.SOUTH), (0,0))
     board.move_turtle()
     board.change_orientation(False)
     board.move_turtle()
     assert board.turtle_is_at_goal() == True
+
+def test_distance_to_goal_basic_case():
+    board = GameBoard(3, 3)
+    assert board.distance_to_goal() == 4
+
+def test_distance_to_goal_other_case():
+    # The distance is the same even if the orientation is different
+    board = GameBoard(25, 42, Turtle(2, Direction.NORTH), (3, 3))
+    # I'm pretty sure this arithmetic is right, but please excuse me (and please correct it) if it's wrong.
+    assert board.distance_to_goal() == 59

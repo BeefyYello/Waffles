@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 from os import system
-from typing import Tuple
+from typing import List, Tuple
 
 class Direction(Enum):
     NORTH = 0
@@ -103,7 +103,9 @@ class GameBoard:
             else:
                 self.turtle.orientation = Direction.SOUTH
 
-
+    def distance_to_goal(self):
+        """Return the length of a shortest path from the turtle to the goal."""
+        raise NotImplementedError
 
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
