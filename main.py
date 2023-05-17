@@ -104,8 +104,10 @@ class GameBoard:
                 self.turtle.orientation = Direction.SOUTH
 
     def distance_to_goal(self):
+        (x,y) = self.turtle_location
+        (a,b) = (self.width - 1, self.length - 1)
+        return abs((x - a) + (y - b))
         """Return the length of a shortest path from the turtle to the goal."""
-        raise NotImplementedError
 
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
