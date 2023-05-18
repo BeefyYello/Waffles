@@ -109,6 +109,10 @@ class GameBoard:
         return abs((x - a) + (y - b))
         """Return the length of a shortest path from the turtle to the goal."""
 
+    def moves_to_goal(self):
+        # How many *moves*, not squares, stand between the turtle and the goal? Suppose that the turtle can change direction immediately.
+        raise NotImplementedError
+
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
         return self.is_goal(x,y)

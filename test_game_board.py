@@ -93,3 +93,9 @@ def test_distance_to_goal_other_case():
     board = GameBoard(25, 42, Turtle(2, Direction.NORTH), (3, 3))
     # I'm pretty sure this arithmetic is right, but please excuse me (and please correct it) if it's wrong.
     assert board.distance_to_goal() == 59
+
+def test_moves_to_goal_speed_1():
+    board = GameBoard(3, 3)
+    assert board.moves_to_goal() == 4
+
+# Also add tests here for nonzero speeds. Be sure to test cases where the width or length to be traversed is not an integer multiple of the speed.
