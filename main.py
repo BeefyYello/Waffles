@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 from enum import Enum
 from os import system
 from typing import List, Tuple
@@ -110,8 +111,11 @@ class GameBoard:
         """Return the length of a shortest path from the turtle to the goal."""
 
     def moves_to_goal(self):
+        (x,y) = self.turtle_location
+        (a,b) = (self.width - 1, self.length - 1)
+        return abs(math.ceil((a-x)/self.turtle.speed) + math.ceil((b-y)/self.turtle.speed))
         # How many *moves*, not squares, stand between the turtle and the goal? Suppose that the turtle can change direction immediately.
-        raise NotImplementedError
+        #Assuming that the turtle turning doesn't count?
 
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
