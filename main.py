@@ -105,18 +105,28 @@ class GameBoard:
                 self.turtle.orientation = Direction.SOUTH
 
     def distance_to_goal(self):
+        """Return the length of a shortest path from the turtle to the goal."""
         (x,y) = self.turtle_location
         (a,b) = (self.width - 1, self.length - 1)
         return abs((x - a) + (y - b))
-        """Return the length of a shortest path from the turtle to the goal."""
 
     def moves_to_goal(self):
         (x,y) = self.turtle_location
         (a,b) = (self.width - 1, self.length - 1)
         return abs(math.ceil((a-x)/self.turtle.speed) + math.ceil((b-y)/self.turtle.speed))
-        # How many *moves*, not squares, stand between the turtle and the goal? Suppose that the turtle can change direction immediately.
-        #Assuming that the turtle turning doesn't count?
 
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
         return self.is_goal(x,y)
+
+
+if __name__=="__main__":
+    board = GameBoard(5, 5)
+    while True:
+        system("clear")
+        print(board.print_board())
+        print("\nEnter Q to quit or any other button to move.")
+        next_input = input()
+        if next_input in ("q", "Q"):
+            break
+        board.move_turtle()
