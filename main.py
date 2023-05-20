@@ -125,8 +125,14 @@ if __name__=="__main__":
     while True:
         system("clear")
         print(board.print_board())
-        print("\nEnter Q to quit or any other button to move.")
+        print("\nEnter Q to quit or any other button to move, L to turn left, and R to turn right.")
         next_input = input()
         if next_input in ("q", "Q"):
             break
-        board.move_turtle()
+        elif next_input in ("l", "L"):
+            board.change_orientation(False)
+        elif next_input in ("r", "R"):
+            board.change_orientation(True)
+   
+        else:
+            board.move_turtle()
