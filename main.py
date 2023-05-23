@@ -75,6 +75,10 @@ class GameBoard:
             (x,y)= (x,newy)
         self.turtle_location = (x,y)
         print(x,y)
+
+    def change_speed(self, turtlespeed: int):
+        self.turtle.speed = turtlespeed
+        return
         
             
     def change_orientation(self, rotate_right=True):
@@ -125,7 +129,7 @@ if __name__=="__main__":
     while True:
         system("clear")
         print(board.print_board())
-        print("\nEnter Q to quit or any other button to move, L to turn left, and R to turn right.")
+        print("\nEnter Q to quit or any other button to move, L to turn left, and R to turn right. Enter any number to change the speed of the turtle.")
         next_input = input()
         if next_input in ("q", "Q"):
             break
@@ -133,6 +137,9 @@ if __name__=="__main__":
             board.change_orientation(False)
         elif next_input in ("r", "R"):
             board.change_orientation(True)
-   
+        elif next_input.isdigit():
+            
+            board.change_speed(int(next_input))
+            
         else:
             board.move_turtle()
