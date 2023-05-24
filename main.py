@@ -129,10 +129,12 @@ if __name__=="__main__":
     while True:
         system("clear")
         print(board.print_board())
-        print("\nEnter Q to quit or any other button to move, L to turn left, and R to turn right. Enter any number to change the speed of the turtle.")
+        print("\nHi, and welcome to my game! \n To move forward, press any button then enter except for r, press to turn right, l, press to turn left, and any integer to change the speed of the turtle.")
         next_input = input()
         if next_input in ("q", "Q"):
             break
+       
+            
         elif next_input in ("l", "L"):
             board.change_orientation(False)
         elif next_input in ("r", "R"):
@@ -140,6 +142,10 @@ if __name__=="__main__":
         elif next_input.isdigit():
             
             board.change_speed(int(next_input))
+       
             
         else:
             board.move_turtle()
+            if board.turtle_is_at_goal()== True:
+                print("Congratulations! You won!")
+                quit()
