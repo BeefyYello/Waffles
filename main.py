@@ -3,7 +3,9 @@ import math
 from enum import Enum
 from os import system
 from typing import List, Tuple
+import random
 
+from dataclasses import dataclass, field
 class Direction(Enum):
     NORTH = 0
     EAST = 1
@@ -29,6 +31,7 @@ class GameBoard:
     width: int
     turtle: Turtle = Turtle(1, Direction.EAST)
     turtle_location: Tuple[int, int] = (0, 0)
+    barrier_list:List = field(default_factory= list) #My dad told me to do this instead of None
 
     def is_goal(self, x: int, y: int) -> bool:
         if x == self.width - 1 and y == self.length - 1:
@@ -43,7 +46,10 @@ class GameBoard:
             for x in range (self.width):
                 if self.turtle_location == (x,y):
                     board = board + "T"
+                elif (x,y) in self.barrier_list:
+                    board = board + "X"
                 else:
+                    
                     if self.is_goal(x,y) == False:
                         board = board + "."
                     else:
@@ -122,10 +128,25 @@ class GameBoard:
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
         return self.is_goal(x,y)
+    def make_barrier_coordinates(self):
+        barriercoordx = random.randint(0,self.width -1)
+        if barriercoordx == 0:
+            barriercoordy = random.randint(1,self.length-1)
+
+        else:
+            barriercoordy = random.randint(1,self.length -1)
+        self.barrier_list.append((barriercoordx,barriercoordy))
+        
+            
 
 
 if __name__=="__main__":
     board = GameBoard(5, 5)
+    board.make_barrier_coordinates()
+    board.make_barrier_coordinates()
+    board.make_barrier_coordinates()
+
+
     while True:
         system("clear")
         print(board.print_board())
