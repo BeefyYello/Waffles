@@ -64,23 +64,33 @@ class GameBoard:
     def move_turtle(self):
         """Updates the turtle's location"""
         (x,y) = self.turtle_location
-        if self.turtle.orientation == Direction.EAST:
-            newx = min(x+self.turtle.speed,self.width-1)
-            (x,y)= (newx,y)
-                
-        if self.turtle.orientation == Direction.NORTH:
-            newy = max(y-self.turtle.speed,0)
-            (x,y)= (x,newy)
+        for i in range(self.turtle.speed): 
+            if self.turtle.orientation == Direction.EAST:
+                newx = min(x+1,self.width-1)
+                (x,y)= (newx,y)
+                    
+            if self.turtle.orientation == Direction.NORTH:
+                newy = max(y-1,0)
+                (x,y)= (x,newy)
             
-        if self.turtle.orientation == Direction.WEST:
-            newx = max(x-self.turtle.speed,0)
-            (x,y)= (newx,y)
+            if self.turtle.orientation == Direction.WEST:
+                newx = max(x-1,0)
+                (x,y)= (newx,y)
         
-        if self.turtle.orientation == Direction.SOUTH:
-            newy = min(y+self.turtle.speed,self.length-1)
-            (x,y)= (x,newy)
+            if self.turtle.orientation == Direction.SOUTH:
+                newy = min(y+1,self.length-1)
+                (x,y)= (x,newy)
+                
+            if (x,y) in self.barrier_list:
+                return False
         self.turtle_location = (x,y)
-        print(x,y)
+                
+        return True
+            
+                
+        
+
+       
 
     def change_speed(self, turtlespeed: int):
         self.turtle.speed = turtlespeed
@@ -128,13 +138,18 @@ class GameBoard:
     def turtle_is_at_goal(self):
         (x,y) = self.turtle_location
         return self.is_goal(x,y)
-    def make_barrier_coordinates(self):
+    
+    def add_random_barrier(self):
         barriercoordx = random.randint(0,self.width -1)
         if barriercoordx == 0:
             barriercoordy = random.randint(1,self.length-1)
 
         else:
             barriercoordy = random.randint(1,self.length -1)
+        self.append_barrier_list(barriercoordx, barriercoordy)
+
+            
+    def append_barrier_list(self, barriercoordx, barriercoordy):        
         self.barrier_list.append((barriercoordx,barriercoordy))
         
             
@@ -142,9 +157,8 @@ class GameBoard:
 
 if __name__=="__main__":
     board = GameBoard(5, 5)
-    board.make_barrier_coordinates()
-    board.make_barrier_coordinates()
-    board.make_barrier_coordinates()
+    board.add_random_barrier()
+
 
 
     while True:
@@ -154,7 +168,7 @@ if __name__=="__main__":
         next_input = input()
         if next_input in ("q", "Q"):
             break
-       
+    
             
         elif next_input in ("l", "L"):
             board.change_orientation(False)
@@ -166,7 +180,12 @@ if __name__=="__main__":
        
             
         else:
-            board.move_turtle()
+            result = board.move_turtle()
+            if result == False:
+                print("YOU MESSED UP! BU BYE")
+                break
             if board.turtle_is_at_goal()== True:
                 print("Congratulations! You won!")
                 quit()
+        
+        
